@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Контакты</title>
+
+    {% load static %}
+
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="sidebar">
+            <div>
+                <div class="sidebar-header">
+                    <div class="logo">B</div>
+                    <h4>Меню</h4>
+                </div>
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'home' %}">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'catalog' %}">Категории</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'orders' %}">Заказы</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contacts' %}">Контакты</a></li>
+                </ul>
+            </div>
+
+            <div class="profile-section">
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">Профиль</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Выход</a></li>
+                </ul>
+
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{% static 'icons/user.svg' %}" alt="Пользователь" class="user-icon"> Пользователь
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="{% url 'settings' %}">Настройки</a></li>
+                        <li><a class="dropdown-item" href="{% url 'help' %}">Помощь</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <h1>Свяжитесь с нами</h1>
+
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-md-6">
+                        <form>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Имя</label>
+                                <input type="text" class="form-control" id="name" placeholder="Введите ваше имя">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Почта</label>
+                                <input type="email" class="form-control" id="email" placeholder="Введите вашу почту">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Сообщение</label>
+                                <textarea class="form-control" id="message" rows="4" placeholder="Введите ваше сообщение"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Отправить</button>
+                        </form>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Наши контакты</h5>
+                                <p class="card-text">
+                                    <strong>Адрес:</strong> ул. Ракетная, 12, Симферополь, Россия<br>
+                                    <strong>Email:</strong> info@example.com<br>
+                                    <strong>Телефон:</strong> +7 4652 123-45-67<br>
+                                    <strong>Часы работы:</strong> Пн-Пт: 9:00 - 18:00
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

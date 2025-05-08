@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Главная</title>
+
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container-fluid">
+
+        <nav class="sidebar">
+            <div>
+                <div class="sidebar-header">
+                    <div class="logo">B</div>
+                    <h4>Меню</h4>
+                </div>
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'home' %}">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'catalog' %}">Категории</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'orders' %}">Заказы</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contacts' %}">Контакты</a></li>
+                </ul>
+            </div>
+
+
+            <div class="profile-section">
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">Профиль</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Выход</a></li>
+                </ul>
+
+
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{% static 'icons/user.svg' %}" alt="Пользователь" class="user-icon"> Пользователь
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="{% url 'settings' %}">Настройки</a></li>
+                        <li><a class="dropdown-item" href="{% url 'help' %}">Помощь</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <main class="main-content">
+            <h1>Главная</h1>
+            <p>Вы находитесь на сайте, предназначенном для продажи товаров.</p>
+
+
+            <div class="product-section">
+                <div class="product-card">
+                    <h5>Товар 1</h5>
+                    <p>$100</p>
+                    <ul>
+                        <li>10 пользователей включено</li>
+                        <li>2 ГБ хранилища</li>
+                        <li>Email поддержка</li>
+                        <li>Доступ в центр помощи</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Купить</a>
+                </div>
+                <div class="product-card">
+                    <h5>Товар 2</h5>
+                    <p>$150</p>
+                    <ul>
+                        <li>20 пользователей включено</li>
+                        <li>5 ГБ хранилища</li>
+                        <li>Email поддержка</li>
+                        <li>Приоритетная помощь</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Купить</a>
+                </div>
+                <div class="product-card">
+                    <h5>Товар 3</h5>
+                    <p>$200</p>
+                    <ul>
+                        <li>50 пользователей включено</li>
+                        <li>10 ГБ хранилища</li>
+                        <li>Email + телефонная поддержка</li>
+                        <li>Премиум-услуги</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Купить</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

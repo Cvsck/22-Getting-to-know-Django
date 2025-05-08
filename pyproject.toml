@@ -1,0 +1,24 @@
+[project]
+name = "22-getting-to-know-django"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Your Name",email = "you@example.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "django (>=5.2.1,<6.0.0)",
+    "asgiref (>=3.8.1,<4.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^7.2.0"
+mypy = "^1.15.0"
+black = "^25.1.0"
+
