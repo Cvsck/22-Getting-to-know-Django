@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Главная</title>
-
     {% load static %}
-
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="icon" href="{% static 'icons/favicon.ico' %}">
 </head>
 <body>
     <div class="container-fluid">
-
+        <!-- 🔹 Боковое меню -->
         <nav class="sidebar">
             <div>
                 <div class="sidebar-header">
@@ -21,18 +20,20 @@
                 </div>
                 <ul class="nav flex-column">
                     <li class="nav-item"><a class="nav-link active" href="{% url 'catalog:home' %}">Главная</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'catalog:categories' %}">Категории</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'catalog:catalog' %}">Категории</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'catalog:orders' %}">Заказы</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'catalog:contacts' %}">Контакты</a></li>
                 </ul>
             </div>
 
+            <!-- 🔹 Профиль и Выход -->
             <div class="profile-section">
                 <ul class="nav flex-column">
                     <li class="nav-item"><a class="nav-link" href="{% url 'catalog:profile' %}">Профиль</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'catalog:logout' %}">Выход</a></li>
                 </ul>
 
+                <!-- 🔹 Кнопка "Пользователь" с выпадающим списком -->
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="{% static 'icons/user.svg' %}" alt="Пользователь" class="user-icon"> Пользователь
@@ -45,14 +46,16 @@
             </div>
         </nav>
 
+        <!-- 🔹 Основной контент -->
         <main class="main-content">
             <h1>Главная</h1>
             <p>Вы находитесь на сайте, предназначенном для продажи товаров.</p>
 
+            <!-- 🔹 Блоки с товарами -->
             <div class="product-section">
                 <div class="product-card">
                     <h5>Товар 1</h5>
-                    <p>$100</p>
+                    <p class="price">$100</p>
                     <ul>
                         <li>10 пользователей включено</li>
                         <li>2 ГБ хранилища</li>
@@ -63,7 +66,7 @@
                 </div>
                 <div class="product-card">
                     <h5>Товар 2</h5>
-                    <p>$150</p>
+                    <p class="price">$150</p>
                     <ul>
                         <li>20 пользователей включено</li>
                         <li>5 ГБ хранилища</li>
@@ -74,7 +77,7 @@
                 </div>
                 <div class="product-card">
                     <h5>Товар 3</h5>
-                    <p>$200</p>
+                    <p class="price">$200</p>
                     <ul>
                         <li>50 пользователей включено</li>
                         <li>10 ГБ хранилища</li>
@@ -87,6 +90,7 @@
         </main>
     </div>
 
+    <!-- 🔹 Подключение Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
