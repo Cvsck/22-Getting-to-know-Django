@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Главная</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="icon" href="{% static 'icons/favicon.ico' %}">
 </head>
 <body>
     <div class="container-fluid">
@@ -35,12 +34,17 @@
 
                 <!-- 🔹 Кнопка "Пользователь" с выпадающим списком -->
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{% static 'icons/user.svg' %}" alt="Пользователь" class="user-icon"> Пользователь
+                    <button class="dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="user-btn-content">
+                            <img src="{% static 'icons/user.svg' %}" alt="Пользователь" class="user-icon">
+                            <span class="user-text">Пользователь</span>
+                        </div>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="userDropdown">
                         <li><a class="dropdown-item" href="{% url 'catalog:settings' %}">Настройки</a></li>
                         <li><a class="dropdown-item" href="{% url 'catalog:help' %}">Помощь</a></li>
+                        <li class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'catalog:logout' %}">Выход</a></li>
                     </ul>
                 </div>
             </div>
@@ -50,43 +54,6 @@
         <main class="main-content">
             <h1>Главная</h1>
             <p>Вы находитесь на сайте, предназначенном для продажи товаров.</p>
-
-            <!-- 🔹 Блоки с товарами -->
-            <div class="product-section">
-                <div class="product-card">
-                    <h5>Товар 1</h5>
-                    <p class="price">$100</p>
-                    <ul>
-                        <li>10 пользователей включено</li>
-                        <li>2 ГБ хранилища</li>
-                        <li>Email поддержка</li>
-                        <li>Доступ в центр помощи</li>
-                    </ul>
-                    <a href="#" class="btn btn-primary">Купить</a>
-                </div>
-                <div class="product-card">
-                    <h5>Товар 2</h5>
-                    <p class="price">$150</p>
-                    <ul>
-                        <li>20 пользователей включено</li>
-                        <li>5 ГБ хранилища</li>
-                        <li>Email поддержка</li>
-                        <li>Приоритетная помощь</li>
-                    </ul>
-                    <a href="#" class="btn btn-primary">Купить</a>
-                </div>
-                <div class="product-card">
-                    <h5>Товар 3</h5>
-                    <p class="price">$200</p>
-                    <ul>
-                        <li>50 пользователей включено</li>
-                        <li>10 ГБ хранилища</li>
-                        <li>Email + телефонная поддержка</li>
-                        <li>Премиум-услуги</li>
-                    </ul>
-                    <a href="#" class="btn btn-primary">Купить</a>
-                </div>
-            </div>
         </main>
     </div>
 
