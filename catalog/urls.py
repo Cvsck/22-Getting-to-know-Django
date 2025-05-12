@@ -1,13 +1,9 @@
 from django.urls import path
-from django.views.generic import TemplateView
+from catalog import views  # Импортируем представления
 
 app_name = "catalog"
 
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="home.html"), name="home"),
-    path(
-        "contacts/",
-        TemplateView.as_view(template_name="contacts.html"),
-        name="contacts",
-    ),
+    path("", views.home, name="home"),  # Главная страница
+    path("contacts/", views.contacts, name="contacts"),  # Страница контактов
 ]
