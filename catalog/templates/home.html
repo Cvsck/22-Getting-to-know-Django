@@ -1,37 +1,14 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Главная</title>
-    {% load static %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-    <div class="container-fluid">
-        <!-- 🔹 Боковое меню -->
-        <nav class="sidebar">
-            <div>
-                <div class="sidebar-header">
-                    <div class="logo">B</div>
-                    <h4>Меню</h4>
-                </div>
-                <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link active" href="{% url 'catalog:home' %}">Главная</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'catalog:contacts' %}">Контакты</a></li>
-                </ul>
-            </div>
-        </nav>
+{% extends "base.html" %}
 
-        <!-- 🔹 Основной контент -->
-        <main class="main-content">
-            <h1>Главная</h1>
-            <p>Вы находитесь на сайте, предназначенном для продажи товаров.</p>
-        </main>
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="jumbotron bg-light p-4 shadow-lg">
+        <h1 class="text-center text-primary">Добро пожаловать в наш магазин!</h1>
+        <p class="lead text-muted text-center">
+            Здесь вы найдете широкий ассортимент товаров по выгодным ценам.
+        </p>
     </div>
-
-    <!-- 🔹 Подключение Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</div>
+{% endblock %}

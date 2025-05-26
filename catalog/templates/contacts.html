@@ -1,83 +1,15 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Контакты</title>
-    {% load static %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-    <div class="container-fluid">
-        <!-- 🔹 Боковое меню -->
-        <nav class="sidebar">
-            <div>
-                <div class="sidebar-header">
-                    <div class="logo">B</div>
-                    <h4>Меню</h4>
-                </div>
-                <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'catalog:home' %}">Главная</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="{% url 'catalog:contacts' %}">Контакты</a></li>
-                </ul>
-            </div>
-        </nav>
+{% extends "base.html" %}
 
-        <!-- 🔹 Основной контент -->
-        <main class="main-content">
-            <h1>Свяжитесь с нами</h1>
+{% block title %}Контакты{% endblock %}
 
-            <div class="container mt-4">
-                <div class="row g-4">
-                    <!-- 🔹 Форма -->
-                    <div class="col-md-6">
-                        <form>
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Имя</label>
-                                <input type="text" class="form-control" id="name" placeholder="Введите ваше имя">
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Почта</label>
-                                <input type="email" class="form-control" id="email" placeholder="Введите вашу почту">
-                            </div>
-                            <div class="mb-3">
-                                <label for="message" class="form-label">Сообщение</label>
-                                <textarea class="form-control" id="message" rows="4" placeholder="Введите ваше сообщение"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Отправить</button>
-                        </form>
-                    </div>
-
-                    <!-- 🔹 Контактная информация -->
-                    <div class="col-md-6">
-                        <div class="contact-info bg-light p-4 rounded">
-                            <h5 class="mb-3">Наши контакты</h5>
-                            <div class="d-flex align-items-center mb-3">
-                                <i class="bi bi-geo-alt fs-3 me-3"></i>
-                                <span>ул. Ракетная, 12, Симферополь, Россия</span>
-                            </div>
-                            <div class="d-flex align-items-center mb-3">
-                                <i class="bi bi-envelope fs-3 me-3"></i>
-                                <span>info@example.com</span>
-                            </div>
-                            <div class="d-flex align-items-center mb-3">
-                                <i class="bi bi-telephone fs-3 me-3"></i>
-                                <span>+7 4652 123-45-67</span>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <i class="bi bi-clock fs-3 me-3"></i>
-                                <span>Пн-Пт: 9:00 - 18:00</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-lg p-4">
+        <h2 class="text-primary text-center">Свяжитесь с нами</h2>
+        <p><strong>Город:</strong> Симферополь</p>
+        <p><strong>Улица:</strong> ул. Ракетная, 12</p>
+        <p><strong>Email:</strong> <a href="mailto:info@example.com" class="text-info">info@example.com</a></p>
+        <p><strong>Телефон:</strong> +7 4652 123-45-67</p>
     </div>
-
-    <!-- 🔹 Подключение Bootstrap JS и иконок -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css">
-</body>
-</html>
+</div>
+{% endblock %}
