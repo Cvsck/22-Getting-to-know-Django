@@ -8,6 +8,5 @@ urlpatterns = [
     path("", include("catalog.urls")),
 ]
 
-# Добавляем обработку статических файлов во время разработки
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

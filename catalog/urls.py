@@ -1,9 +1,10 @@
 from django.urls import path
-from catalog import views  # Импортируем представления
+from catalog import views
 
 app_name = "catalog"
 
 urlpatterns = [
-    path("", views.home, name="home"),  # Главная страница
-    path("contacts/", views.contacts, name="contacts"),  # Страница контактов
+    path("", views.home, name="home"),
+    path("contacts/", views.contacts, name="contacts"),
+    path("product/<int:pk>/", views.product_detail, name="product_detail"),
 ]

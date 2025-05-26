@@ -1,3 +1,10 @@
+/* 🔹 Универсальный сброс стилей */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #ffffff;
@@ -9,15 +16,16 @@ body {
     min-height: 100vh;
 }
 
+/* 🔹 Боковое меню */
 .sidebar {
     width: 250px;
     height: 100vh;
     background-color: #2c2c2c;
     padding: 20px;
-    border-right: 2px solid #444;
+    border-right: 1px solid #444;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .sidebar-header {
@@ -67,48 +75,40 @@ body {
     font-weight: bold;
 }
 
-.profile-section {
-    margin-top: auto;
-    padding-top: 15px;
-    border-top: 1px solid #3c3c3c;
-}
-
+/* 🔹 Основной контент */
 .main-content {
-    flex-grow: 1;
-    background-color: white;
-    color: black;
-    padding: 30px;
-    text-align: center;
-}
-
-/* 🔹 Исправленные стили кнопки "Пользователь" */
-.user-icon {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-    vertical-align: middle;
-}
-
-.dropdown-toggle {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding: 10px 15px;
-    border: 2px solid #444;
-    background-color: #2c2c2c;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    height: 100vh;
 }
 
-.dropdown-menu {
-    background-color: #2c2c2c;
-    border: none;
+/* 🔹 Контейнер формы контактов */
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    width: 80%;
 }
 
-.dropdown-item {
-    color: white;
+/* 🔹 Форма */
+.contact-form {
+    flex: 1;
+    max-width: 400px;
 }
 
-.dropdown-item:hover {
-    background-color: #3c3c3c;
+/* 🔹 Блок контактов */
+.contact-info {
+    flex: 1;
+    max-width: 300px;
+}
+
+.card {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
 }

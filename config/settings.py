@@ -2,14 +2,13 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Загружаем переменные окружения из .env файла
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-placeholder")
+SECRET_KEY = os.getenv("SECRET_KEY", "replace-with-your-own-secret-key")
 DEBUG = os.getenv("DEBUG", "True") == "True"
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -37,7 +36,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [BASE_DIR / "catalog/templates"],
-        "APP_DIRS": True,
+        "APP_DIRS": True,  # 🔹 Включаем для работы админки
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.request",
@@ -61,16 +60,9 @@ DATABASES = {
     }
 }
 
-LANGUAGE_CODE = "ru"
-TIME_ZONE = "Europe/Moscow"
-USE_I18N = True
-USE_TZ = True
-
-# Статические файлы
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-# Медиафайлы
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
