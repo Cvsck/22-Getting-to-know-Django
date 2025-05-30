@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center text-primary">{{ object.title }}</h1>
+
+    {% if object.preview_image %}
+        <div class="text-center mb-3">
+            <img src="{{ object.preview_image.url }}" alt="Preview" class="img-fluid">
+        </div>
+    {% endif %}
+
+    <p>{{ object.content }}</p>
+    <p><strong>Просмотров:</strong> {{ object.view_count }}</p>
+
+    <div class="text-center mt-4">
+        <a href="{% url 'blog:blog_list' %}" class="btn btn-outline-primary">← Назад к блогу</a>
+    </div>
+</div>
+{% endblock %}

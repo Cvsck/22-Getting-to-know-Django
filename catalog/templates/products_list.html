@@ -4,6 +4,12 @@
 {% block content %}
 <div class="container mt-4">
     <h1 class="text-center text-primary">Список товаров</h1>
+
+    <!-- 🔹 Добавлена ссылка на блог -->
+    <div class="text-center mb-4">
+        <a href="{% url 'blog:blog_list' %}" class="btn btn-outline-primary">Перейти в блог</a>
+    </div>
+
     <div class="row">
         {% for product in products %}
             <div class="col-md-4">
