@@ -6,5 +6,8 @@
         <li class="nav-item">
             <a class="nav-link {% if request.resolver_match.url_name == 'contacts' %}active{% endif %}" href="{% url 'catalog:contacts' %}">Контакты</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'blog_list' or '/blogs/' in request.path %}active{% endif %}" href="{% url 'blog:blog_list' %}">Блог</a>
+        </li>
     </ul>
 </nav>

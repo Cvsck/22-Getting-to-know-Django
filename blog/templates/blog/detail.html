@@ -6,12 +6,19 @@
 
     {% if object.preview_image %}
         <div class="text-center mb-3">
-            <img src="{{ object.preview_image.url }}" alt="Preview" class="img-fluid">
+            <img src="{{ object.preview_image.url }}" alt="Preview" class="img-fluid rounded">
         </div>
     {% endif %}
 
-    <p>{{ object.content }}</p>
-    <p><strong>Просмотров:</strong> {{ object.view_count }}</p>
+    <p class="text-center">{{ object.content }}</p>
+    <p class="text-center"><strong>Просмотров:</strong> {{ object.view_count }}</p>
+
+    {% if user.is_authenticated %}
+    <div class="text-center mt-4">
+        <a href="{% url 'blog:blog_edit' object.pk %}" class="btn btn-warning">Редактировать</a>
+        <a href="{% url 'blog:blog_delete' object.pk %}" class="btn btn-danger">Удалить</a>
+    </div>
+    {% endif %}
 
     <div class="text-center mt-4">
         <a href="{% url 'blog:blog_list' %}" class="btn btn-outline-primary">← Назад к блогу</a>
