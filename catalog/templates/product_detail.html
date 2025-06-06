@@ -13,10 +13,16 @@
                     <img src="{% static 'images/default.png' %}" alt="Нет изображения" class="img-fluid">
                 {% endif %}
             </div>
+
             <p><strong>Категория:</strong> {{ product.category.name }}</p>
             <p><strong>Описание:</strong> {{ product.description }}</p>
-            <p><strong>Цена:</strong> {{ product.purchase_price }} ₽</p>
-            <a href="{% url 'catalog:home' %}" class="btn btn-primary">Назад к списку товаров</a>
+            <p><strong>Цена:</strong> {{ product.price }} ₽</p>  <!-- 🔹 Исправлено `purchase_price` → `price` -->
+
+            <div class="mt-3">
+                <a href="{% url 'catalog:product_edit' pk=product.pk %}" class="btn btn-warning">Редактировать</a>
+                <a href="{% url 'catalog:product_delete' pk=product.pk %}" class="btn btn-danger">Удалить</a>
+                <a href="{% url 'catalog:home' %}" class="btn btn-primary">Назад к списку товаров</a>
+            </div>
         </div>
     </div>
 {% endblock %}

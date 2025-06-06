@@ -1,14 +1,10 @@
 from django.contrib import admin
 from .models import Product, Category
 
-
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ("id", "name")
-
-
-@admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "purchase_price", "category")
-    list_filter = ("category",)
-    search_fields = ("name", "description")
+    list_display = ("name", "category", "price", "created_at", "updated_at")  # 🔹 Заменили `purchase_price` на `price`
+    search_fields = ("name", "category__name")
+    list_filter = ("category", "created_at")
+
+admin.site.register(Product, ProductAdmin)
+admin.site.register(Category)
