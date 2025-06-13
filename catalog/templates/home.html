@@ -1,14 +1,40 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Главная{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
     <div class="jumbotron bg-light p-4 shadow-lg">
-        <h1 class="text-center text-primary">Добро пожаловать в наш магазин!</h1>
-        <p class="lead text-muted text-center">
-            Здесь вы найдете широкий ассортимент товаров по выгодным ценам.
-        </p>
+        {% if user.is_authenticated %}
+            <h1 class="text-center text-primary">Привет, {{ user.username }}!</h1>
+            <p class="lead text-muted text-center">Рады видеть вас в нашем магазине!</p>
+        {% else %}
+            <h1 class="text-center text-primary">Добро пожаловать в наш магазин!</h1>
+            <p class="lead text-muted text-center">
+                Здесь вы найдете широкий ассортимент товаров по выгодным ценам.
+            </p>
+        {% endif %}
+    </div>
+
+    <!-- ✅ Список товаров -->
+    <div class="row mt-4">
+        {% for product in products %}
+            <div class="col-md-4">
+                <div class="card shadow-lg p-3">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="card-img-top">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description|truncatechars:100 }}</p>
+                        <a href="{% url 'catalog:product_detail' product.pk %}" class="btn btn-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-center text-muted">Нет доступных товаров</p>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

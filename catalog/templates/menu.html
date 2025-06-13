@@ -10,4 +10,23 @@
             <a class="nav-link {% if request.resolver_match.url_name == 'blog_list' or '/blogs/' in request.path %}active{% endif %}" href="{% url 'blog:blog_list' %}">Блог</a>
         </li>
     </ul>
+
+    <!-- ✅ Кнопки входа/выхода закреплены внизу -->
+    <ul class="nav flex-column mt-auto">
+        {% if user.is_authenticated %}
+            <li class="nav-item">
+                <form method="post" action="{% url 'users:logout' %}" class="mt-2">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger w-100">Выйти</button>
+                </form>
+            </li>
+        {% else %}
+            <li class="nav-item">
+                <a href="{% url 'users:login' %}" class="btn btn-primary w-100">Войти</a>
+            </li>
+            <li class="nav-item mt-2">
+                <a href="{% url 'users:register' %}" class="btn btn-success w-100">Регистрация</a>
+            </li>
+        {% endif %}
+    </ul>
 </nav>

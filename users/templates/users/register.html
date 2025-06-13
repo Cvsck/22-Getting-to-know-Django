@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center">Регистрация</h2>
+    <form method="POST" enctype="multipart/form-data" class="mx-auto w-50 border p-4 rounded shadow-sm">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            {{ form.as_p }}  <!-- 🔹 Здесь отображается вся форма, автоматически оборачивая поля в <p> -->
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Зарегистрироваться</button>
+    </form>
+</div>
+{% endblock %}

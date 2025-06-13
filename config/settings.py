@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "catalog",
     "blog",
+    "users",
 ]
 
 MIDDLEWARE = [
@@ -36,7 +37,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],  # 🔹 Используем глобальную папку `templates`
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -67,3 +68,24 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+AUTH_USER_MODEL = "users.CustomUser"
+
+# 🔹 Перенаправление на страницу входа
+LOGIN_URL = "/users/login/"
+LOGIN_REDIRECT_URL = "/"  # ✅ После входа перенаправление на главную
+
+# 🔹 Перенаправление после выхода
+LOGOUT_REDIRECT_URL = "/"
+
+# 🔹 CSRF-защита (разрешённые домены)
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1", "http://localhost"]
+
+# 🔹 Настройки email (Яндекс SMTP)
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.yandex.ru"
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True  # ✅ У Яндекса используется SSL
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")  # 🔹 Email для отправки писем
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")  # 🔹 Почтовый пароль или токен
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
