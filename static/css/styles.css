@@ -1,44 +1,100 @@
-/* 🔹 Кнопки входа/регистрации */
-.nav.flex-column .btn {
-    width: 100%;
-    margin-top: 10px;
-    padding: 10px;
-    font-size: 18px;
-    text-align: center;
-    border-radius: 5px;
+/* ✅ Сброс отступов */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* ✅ Фиксированная боковая панель */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    background: #007bff !important;
+    box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+/* ✅ Основной контейнер адаптируется */
+.container-fluid {
+    padding-left: 250px;
+}
+
+/* ✅ Основной контент */
+.main-content {
+    padding: 20px;
+}
+
+/* ✅ Блок навигации */
+.nav.flex-column {
+    margin-top: 20px;
+    background: transparent !important;
+}
+
+/* ✅ Навигационные ссылки */
+.nav-link {
+    font-size: 20px;
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    padding: 12px;
+    color: white !important;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease-in-out;
 }
 
-/* ✅ Стили для "Войти" */
-.nav.flex-column .btn-primary {
-    background-color: #007bff;
-    color: white;
-    border: none;
+/* ✅ Эффект при наведении */
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    transform: scale(1.03);
 }
 
-.nav.flex-column .btn-primary:hover {
-    background-color: #0056b3;
+/* ✅ Плавающий эффект для иконок в `sidebar` */
+.nav-link i {
+    transition: all 0.3s ease-in-out;
 }
 
-/* ✅ Стили для "Регистрация" */
-.nav.flex-column .btn-success {
-    background-color: #28a745;
-    color: white;
-    border: none;
+.nav-link:hover i {
+    transform: scale(1.15);
 }
 
-.nav.flex-column .btn-success:hover {
-    background-color: #218838;
+/* ✅ Кнопки входа/регистрации */
+.custom-btn {
+    display: block;
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    margin: 5px 0;
+    border: 2px solid white;
+    background-color: transparent;
+    color: white !important;
+    border-radius: 6px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
 }
 
-/* ✅ Стили для "Выйти" */
-.nav.flex-column .btn-danger {
-    background-color: #dc3545;
-    color: white;
-    border: none;
+.custom-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.03);
 }
 
-.nav.flex-column .btn-danger:hover {
-    background-color: #c82333;
+/* ✅ Карточки товаров с плавным эффектом */
+.main-content .card {
+    transition: all 0.3s ease-in-out;
+    border-radius: 8px;
+    border: 2px solid transparent;
+}
+
+/* ✅ Полное выделение карточки при наведении */
+.main-content .card:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* 🔹 Подсветка */
+    border: 2px solid white; /* 🔹 Чёткий контур при наведении */
+    transform: scale(1.03); /* 🔹 Лёгкое увеличение */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* 🔹 Добавляем мягкую тень */
 }

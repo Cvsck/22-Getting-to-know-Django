@@ -14,6 +14,7 @@ FORBIDDEN_WORDS = {
     "радар",
 }
 
+
 class Category(models.Model):
     name = models.CharField(max_length=255, verbose_name="Наименование")
     description = models.TextField(verbose_name="Описание")
@@ -27,8 +28,8 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    DRAFT = 'draft'
-    PUBLISHED = 'published'
+    DRAFT = "draft"
+    PUBLISHED = "published"
 
     STATUS_CHOICES = [
         (DRAFT, "Черновик"),
@@ -48,23 +49,22 @@ class Product(models.Model):
     )
 
     owner = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        verbose_name="Владелец",
-        default=1
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Владелец"
     )
 
     status = models.CharField(
         max_length=10,
         choices=STATUS_CHOICES,
         default=DRAFT,
-        verbose_name="Статус публикации"
+        verbose_name="Статус публикации",
     )
 
     in_stock = models.BooleanField(default=True, verbose_name="В наличии")
     author_email = models.EmailField(verbose_name="Email автора", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
-    updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата последнего изменения")
+    updated_at = models.DateTimeField(
+        auto_now=True, verbose_name="Дата последнего изменения"
+    )
 
     class Meta:
         verbose_name = "Продукт"

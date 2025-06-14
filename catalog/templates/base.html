@@ -6,22 +6,25 @@
     <title>{% block title %}{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}?v=1">
 </head>
-<body>
-    <div class="container-fluid d-flex">
-        <!-- ✅ Левая боковая панель -->
-        <aside class="sidebar">
-            {% include "menu.html" %}  <!-- ✅ Подключаем обновленное меню с кнопками -->
-        </aside>
+<body class="d-flex flex-column min-vh-100">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- ✅ Левая боковая панель -->
+            <aside class="sidebar col-md-3">
+                {% include "menu.html" %}
+            </aside>
 
-        <!-- ✅ Основное содержимое -->
-        <main class="flex-grow-1 p-4 ms-5">
-            {% block content %}{% endblock %}
-        </main>
+            <!-- ✅ Основное содержимое -->
+            <main class="col-md-9 p-4">
+                {% block content %}{% endblock %}
+            </main>
+        </div>
     </div>
 
-    <footer class="text-center mt-4">
+    <!-- ✅ Фиксированный footer -->
+    <footer class="text-center py-3 bg-light border-top mt-auto">
         <p>© 2025. Все права защищены.</p>
     </footer>
 </body>

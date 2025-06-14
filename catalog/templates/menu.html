@@ -1,31 +1,43 @@
-<nav class="sidebar">
+<nav class="sidebar d-flex flex-column h-100">
     <ul class="nav flex-column">
         <li class="nav-item">
-            <a class="nav-link {% if request.resolver_match.url_name == 'home' or '/product/' in request.path %}active{% endif %}" href="{% url 'catalog:home' %}">Главная</a>
+            <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'catalog:home' %}">
+                <i class="fas fa-home"></i> Главная
+            </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {% if request.resolver_match.url_name == 'contacts' %}active{% endif %}" href="{% url 'catalog:contacts' %}">Контакты</a>
+            <a class="nav-link {% if request.path == '/contacts/' %}active{% endif %}" href="{% url 'catalog:contacts' %}">
+                <i class="fas fa-envelope"></i> Контакты
+            </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {% if request.resolver_match.url_name == 'blog_list' or '/blogs/' in request.path %}active{% endif %}" href="{% url 'blog:blog_list' %}">Блог</a>
+            <a class="nav-link {% if '/blogs/' in request.path %}active{% endif %}" href="{% url 'blog:blog_list' %}">
+                <i class="fas fa-newspaper"></i> Блог
+            </a>
         </li>
     </ul>
 
-    <!-- ✅ Кнопки входа/выхода закреплены внизу -->
+    <!-- ✅ Убираем фон у блока кнопок -->
     <ul class="nav flex-column mt-auto">
         {% if user.is_authenticated %}
             <li class="nav-item">
                 <form method="post" action="{% url 'users:logout' %}" class="mt-2">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger w-100">Выйти</button>
+                    <button type="submit" class="btn custom-btn w-100">
+                        <i class="fas fa-sign-out-alt"></i> Выйти
+                    </button>
                 </form>
             </li>
         {% else %}
             <li class="nav-item">
-                <a href="{% url 'users:login' %}" class="btn btn-primary w-100">Войти</a>
+                <a href="{% url 'users:login' %}" class="btn custom-btn w-100">
+                    <i class="fas fa-sign-in-alt"></i> Войти
+                </a>
             </li>
             <li class="nav-item mt-2">
-                <a href="{% url 'users:register' %}" class="btn btn-success w-100">Регистрация</a>
+                <a href="{% url 'users:register' %}" class="btn custom-btn w-100">
+                    <i class="fas fa-user-plus"></i> Регистрация
+                </a>
             </li>
         {% endif %}
     </ul>
