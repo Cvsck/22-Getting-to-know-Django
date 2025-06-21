@@ -4,12 +4,15 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# Базовая директория проекта
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Безопасность
 SECRET_KEY = os.getenv("SECRET_KEY", "replace-with-your-own-secret-key")
 DEBUG = os.getenv("DEBUG", "True") == "True"
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
+# Приложения
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -22,6 +25,7 @@ INSTALLED_APPS = [
     "users",
 ]
 
+# Middleware
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -32,12 +36,14 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# Роутинг
 ROOT_URLCONF = "config.urls"
 
+# Шаблоны
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates")],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -49,8 +55,10 @@ TEMPLATES = [
     },
 ]
 
+# WSGI
 WSGI_APPLICATION = "config.wsgi.application"
 
+# База данных
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -62,6 +70,15 @@ DATABASES = {
     }
 }
 
+# Пользовательская модель
+AUTH_USER_MODEL = "users.CustomUser"
+
+# Аутентификация
+LOGIN_URL = "/users/login/"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
+
+# Статика и медиа
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
@@ -69,23 +86,23 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
-AUTH_USER_MODEL = "users.CustomUser"
-
-# 🔹 Перенаправление на страницу входа
-LOGIN_URL = "/users/login/"
-LOGIN_REDIRECT_URL = "/"  # ✅ После входа перенаправление на главную
-
-# 🔹 Перенаправление после выхода
-LOGOUT_REDIRECT_URL = "/"
-
-# 🔹 CSRF-защита (разрешённые домены)
-CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1", "http://localhost"]
-
-# 🔹 Настройки email (Яндекс SMTP)
+# Email (пример с Яндекс SMTP)
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.yandex.ru"
 EMAIL_PORT = 465
-EMAIL_USE_SSL = True  # ✅ У Яндекса используется SSL
-EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")  # 🔹 Email для отправки писем
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")  # 🔹 Почтовый пароль или токен
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# CSRF
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1", "http://localhost"]
+
+# Кеширование через Redis
+CACHE_ENABLED = True
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+    }
+}

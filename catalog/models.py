@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.utils.text import slugify
 
 # 🔹 Запрещенные слова для валидации
 FORBIDDEN_WORDS = {
@@ -17,7 +18,13 @@ FORBIDDEN_WORDS = {
 
 class Category(models.Model):
     name = models.CharField(max_length=255, verbose_name="Наименование")
+    slug = models.SlugField(unique=True, blank=True, verbose_name="Slug")
     description = models.TextField(verbose_name="Описание")
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = "Категория"
@@ -47,18 +54,19 @@ class Product(models.Model):
     price = models.DecimalField(
         max_digits=10, decimal_places=2, verbose_name="Цена", default=0
     )
-
     owner = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Владелец"
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name="Владелец",
+        null=True,
+        blank=True,
     )
-
     status = models.CharField(
         max_length=10,
         choices=STATUS_CHOICES,
         default=DRAFT,
         verbose_name="Статус публикации",
     )
-
     in_stock = models.BooleanField(default=True, verbose_name="В наличии")
     author_email = models.EmailField(verbose_name="Email автора", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")

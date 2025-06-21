@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.utils.decorators import method_decorator
 from django.views.generic import (
     ListView,
     DetailView,
@@ -12,14 +13,18 @@ from django.contrib.auth.mixins import (
     LoginRequiredMixin,
     PermissionRequiredMixin,
 )  # ✅ Ограничение доступа
-from .models import Product
+from .models import Product, Category
 from .forms import ProductForm
+from django.views.decorators.cache import cache_page
+
+from .services import ProductService
 
 
 # ✅ Функция для рендеринга `home.html`
 def home(request):
     products = Product.objects.all()
-    return render(request, "home.html", {"products": products})
+    categories = Category.objects.all()  # ← вот это добавь
+    return render(request, "home.html", {"categories": categories})
 
 
 class ProductListView(ListView):
@@ -28,6 +33,7 @@ class ProductListView(ListView):
     context_object_name = "products"
 
 
+@method_decorator(cache_page(60 * 15), name="dispatch")  # 15 минут
 class ProductDetailView(DetailView):
     model = Product
     template_name = "product_detail.html"
@@ -84,3 +90,11 @@ class ProductDeleteView(
 
 class ContactsView(TemplateView):
     template_name = "contacts.html"
+
+
+class ProductByCategoryView(ListView):
+    template_name = "by_category.html"
+    context_object_name = "products"
+
+    def get_queryset(self):
+        return ProductService.get_by_category(self.kwargs["slug"])

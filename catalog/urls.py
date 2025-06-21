@@ -6,12 +6,13 @@ from .views import (
     ProductUpdateView,
     ProductDeleteView,
     ContactsView,
+    ProductByCategoryView,
 )
 
 app_name = "catalog"
 
 urlpatterns = [
-    path("", home, name="home"),  # ✅ Теперь загружается `home.html`
+    path("", home, name="home"),
     path("product/<int:pk>/", ProductDetailView.as_view(), name="product_detail"),
     path("product/create/", ProductCreateView.as_view(), name="product_create"),
     path("product/<int:pk>/edit/", ProductUpdateView.as_view(), name="product_edit"),
@@ -19,4 +20,9 @@ urlpatterns = [
         "product/<int:pk>/delete/", ProductDeleteView.as_view(), name="product_delete"
     ),
     path("contacts/", ContactsView.as_view(), name="contacts"),
+    path(
+        "products/category/<slug:slug>/",
+        ProductByCategoryView.as_view(),
+        name="products_by_category",
+    ),
 ]
