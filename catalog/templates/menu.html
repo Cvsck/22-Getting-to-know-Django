@@ -1,0 +1,44 @@
+<nav class="sidebar d-flex flex-column h-100">
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'catalog:home' %}">
+                <i class="fas fa-home"></i> Главная
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if request.path == '/contacts/' %}active{% endif %}" href="{% url 'catalog:contacts' %}">
+                <i class="fas fa-envelope"></i> Контакты
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if '/blogs/' in request.path %}active{% endif %}" href="{% url 'blog:blog_list' %}">
+                <i class="fas fa-newspaper"></i> Блог
+            </a>
+        </li>
+    </ul>
+
+    <!-- ✅ Убираем фон у блока кнопок -->
+    <ul class="nav flex-column mt-auto">
+        {% if user.is_authenticated %}
+            <li class="nav-item">
+                <form method="post" action="{% url 'users:logout' %}" class="mt-2">
+                    {% csrf_token %}
+                    <button type="submit" class="btn custom-btn w-100">
+                        <i class="fas fa-sign-out-alt"></i> Выйти
+                    </button>
+                </form>
+            </li>
+        {% else %}
+            <li class="nav-item">
+                <a href="{% url 'users:login' %}" class="btn custom-btn w-100">
+                    <i class="fas fa-sign-in-alt"></i> Войти
+                </a>
+            </li>
+            <li class="nav-item mt-2">
+                <a href="{% url 'users:register' %}" class="btn custom-btn w-100">
+                    <i class="fas fa-user-plus"></i> Регистрация
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="jumbotron bg-light p-4 shadow-lg">
+        {% if user.is_authenticated %}
+            <h1 class="text-center text-primary">Привет, {{ user.username }}!</h1>
+            <p class="lead text-muted text-center">Рады видеть вас в нашем магазине!</p>
+        {% else %}
+            <h1 class="text-center text-primary">Добро пожаловать в наш магазин!</h1>
+            <p class="lead text-muted text-center">Здесь вы найдете широкий ассортимент товаров по выгодным ценам.</p>
+        {% endif %}
+    </div>
+
+    <!-- ✅ Категории с иконками -->
+    <div class="my-5">
+        <h3 class="text-center text-secondary mb-4">Категории</h3>
+        <div class="row justify-content-center">
+            {% for category in categories %}
+                <div class="col-md-4 col-sm-6 mb-4">
+                    <a href="{% url 'catalog:products_by_category' slug=category.slug %}" class="text-decoration-none">
+                        <div class="card h-100 shadow border-info border-2 category-card">
+                            <div class="card-body text-center">
+                                <!-- 💡 Добавляем иконку в зависимости от названия -->
+                                {% if category.name == "Электроника" %}
+                                    <i class="fas fa-microchip fa-2x text-info mb-2"></i>
+                                {% elif category.name == "Бытовая химия" %}
+                                    <i class="fas fa-pump-soap fa-2x text-info mb-2"></i>
+                                {% else %}
+                                    <i class="fas fa-tags fa-2x text-info mb-2"></i>
+                                {% endif %}
+
+                                <h4 class="card-title text-info mt-2">{{ category.name }}</h4>
+                                <p class="card-text text-muted">{{ category.description|truncatechars:100 }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .category-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .category-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 0 20px rgba(13, 110, 253, 0.3);
+        border-color: #0d6efd;
+    }
+</style>
+{% endblock %}

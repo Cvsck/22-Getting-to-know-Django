@@ -1,0 +1,166 @@
+/* 🔹 Универсальный сброс стилей */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: black;
+}
+
+/* 🔹 Общая структура */
+.container-fluid {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* 🔹 Боковое меню */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #2c2c2c;
+    padding: 20px;
+    border-right: 1px solid #444;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow-y: auto;  /* 🔹 Если меню длинное, оно прокручивается */
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sidebar-header .logo {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    color: black;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+.sidebar-header h4 {
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+.nav-item {
+    border-bottom: 1px solid #3c3c3c;
+    padding: 10px 0;
+}
+
+.nav-item a {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+.nav-item a:hover {
+    background-color: #3c3c3c;
+}
+
+.nav-item a.active {
+    background-color: #3c6ef0;
+    font-weight: bold;
+}
+
+/* 🔹 Основной контент */
+.main-content {
+    margin-left: 250px;  /* 🔹 Контент сдвигается вправо, чтобы не накладываться на меню */
+    flex-grow: 1;
+    padding: 20px;
+}
+
+/* 🔹 Контейнер формы контактов */
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    width: 80%;
+}
+
+/* 🔹 Форма */
+.contact-form {
+    flex: 1;
+    max-width: 400px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* 🔹 Кнопка */
+.contact-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact-form button:hover {
+    background-color: #0056b3;
+}
+
+/* 🔹 Блок контактов */
+.contact-info {
+    flex: 1;
+    max-width: 300px;
+}
+
+.card {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: left;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 🔹 Заголовки */
+h1 {
+    font-size: 28px;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+/* 🔹 Ссылки */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center text-primary">Товары категории: {{ view.kwargs.slug }}</h1>
+
+    <div class="row">
+        {% for product in products %}
+            <div class="col-md-4">
+                <div class="card shadow-lg p-3">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="card-img-top">
+                    {% else %}
+                        <img src="{% static 'images/default.png' %}" alt="Нет изображения" class="card-img-top">
+                    {% endif %}
+                    <div class="card-body">
+                        <h2 class="card-title">{{ product.name }}</h2>
+                        <p class="card-text">{{ product.description|truncatechars:100 }}</p>
+                        <a href="{% url 'catalog:product_detail' product.pk %}" class="btn btn-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12 text-center mt-5">
+                <p class="text-muted">В этой категории пока нет товаров.</p>
+                <a href="{% url 'catalog:home' %}" class="btn btn-outline-secondary mt-3">← Вернуться на главную</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
